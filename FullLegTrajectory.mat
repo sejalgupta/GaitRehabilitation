@@ -1,0 +1,36 @@
+hip = csvread('hip.csv'); knee = csvread('knee.csv'); ankle = csvread('ankle.csv');
+x = [];
+y = [];
+a = [];
+b = [];
+c = [];
+d = [];
+for i=1:100
+alpha = 270 + hip(i);
+beta = alpha - knee(i);
+gamma = beta + 90 + ankle(i);
+l1 = 17;
+l2 = 15;
+l3 = 5;
+x(i)= 0+(l1*cosd(alpha));
+y(i)= 0+(l1*sind(alpha));
+a(i) = x(i)+(l2*cosd(beta));
+b(i) = y(i) +(l2*sind(beta));
+c(i)= a(i)+(l3*cosd(gamma));
+d(i)= b(i) +(l3*sind(gamma));
+end
+for i=1:100
+plot([0 x(i)],[0 y(i)], 'Color', 'black');
+hold on
+i = i+4;
+end
+for i=1:100
+plot([x(i) a(i)], [y(i) b(i)], 'Color', 'red');
+hold on
+i = i+4;
+end
+for i=1:100
+plot([a(i) c(i)], [b(i) d(i)], 'Color', 'blue');
+hold on
+i = i+4;
+end
